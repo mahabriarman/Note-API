@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Profile</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+</head>
+<body>
+
+<div class="container mt-5">
+
+    <div class="card">
+
+        <div class="card-header">
+            <h2>User Profile</h2>
+        </div>
+
+        <div class="card-body">
+
+            <h4>
+                Name:
+                <%= user.name %>
+            </h4>
+
+            <h4>
+                Email:
+                <%= user.email %>
+            </h4>
+
+            <h4>
+                Total Notes:
+                <%= totalNotes %>
+            </h4>
+
+            <h4>
+                Joined:
+                <%= user.createdAt.toLocaleDateString() %>
+            </h4>
+
+            <a
+                href="/user/home"
+                class="btn btn-primary mt-3"
+            >
+                Back To Home
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

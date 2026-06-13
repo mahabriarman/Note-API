@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note App</title>
+</head>
+
+<body>
+
+<body>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+
+        <a class="navbar-brand fs-3" href="/user/home">
+            Notes App
+        </a>
+
+        <div class="d-flex align-items-center gap-2">
+
+            <form
+                action="/user/search"
+                method="GET"
+                class="d-flex me-3"
+            >
+                <input
+                    class="form-control me-2"
+                    type="text"
+                    name="title"
+                    placeholder="Search Notes"
+                >
+
+                <button
+                    class="btn btn-primary"
+                    type="submit"
+                >
+                    Search
+                </button>
+            </form>
+
+            <a
+                href="/user/add"
+                class="btn btn-success"
+            >
+                Add Note
+            </a>
+
+            <a
+                href="/profile"
+                class="btn btn-info"
+            >
+                Profile
+            </a>
+
+            <a
+                href="/logout"
+                class="btn btn-danger"
+            >
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+</nav>
+    <div class="container mt-4">
+
+        <h1 class="mb-4">
+            All Notes
+        </h1>
+
+        <div class="row">
+
+            <% if(notes.length === 0){ %>
+
+                <div class="alert alert-warning">
+                    No Notes Found
+                </div>
+
+            <% } else { %>
+
+                <% notes.forEach(note => { %>
+
+                    <div class="col-md-4 mb-4">
+
+                        <div class="card h-100">
+
+                            <div class="card-body">
+
+                                <h5 class="card-title">
+                                    <%= note.title %>
+                                </h5>
+
+                                <p class="card-text">
+                                    <%= note.content %>
+                                </p>
+
+                                <small class="text-muted">
+                                    Created:
+                                    <%= note.createdAt.toLocaleDateString() %>
+                                </small>
+
+                                <br><br>
+
+                                <% if(note.tag && note.tag.length > 0){ %>
+
+                                    <div class="mb-2">
+
+                                        <% note.tag.forEach(tag => { %>
+
+                                            <span class="badge bg-secondary">
+                                                <%= tag %>
+                                            </span>
+
+                                        <% }) %>
+
+                                    </div>
+
+                                <% } %>
+
+                                <a
+                                    href="/user/view/<%= note._id %>"
+                                    class="btn btn-primary"
+                                >
+                                    View
+                                </a>
+
+                                <a
+                                    href="/user/edit/<%= note._id %>"
+                                    class="btn btn-warning"
+                                >
+                                    Edit
+                                </a>
+
+                                <form
+                                    action="/user/delete/<%= note._id %>"
+                                    method="POST"
+                                    style="display:inline;"
+                                    onsubmit="return confirm('Delete this note?')"
+                                >
+
+                                    <button
+                                        type="submit"
+                                        class="btn btn-danger"
+                                    >
+                                        Delete
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                <% }) %>
+
+            <% } %>
+
+        </div>
+
+    </div>
+
+    <footer class="bg-dark text-white text-center p-3 mt-5">
+        Notes App © 2026
+    </footer>
+
+</body>
+
+</html>
