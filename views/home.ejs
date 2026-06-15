@@ -65,7 +65,74 @@
 
     </div>
 </nav>
+<div class="row mb-4">
+
+    <div class="col-md-4">
+
+        <div class="card text-center shadow-sm">
+
+            <div class="card-body">
+
+                <h2 class="text-primary">
+                    <%= totalNotes %>
+                </h2>
+
+                <p class="mb-0">
+                    Total Notes
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card text-center shadow-sm">
+
+            <div class="card-body">
+
+                <h2 class="text-success">
+                    <%= totalTags %>
+                </h2>
+
+                <p class="mb-0">
+                    Total Tags
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card text-center shadow-sm">
+
+            <div class="card-body">
+
+                <h5 class="text-danger">
+                    <%= latestNote %>
+                </h5>
+
+                <p class="mb-0">
+                    Latest Note
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
     <div class="container mt-4">
+        <% if(success){%>
+            <div class="alert alert-success"></div>
+            <%= success %>
+       <% } %>
 
         <h1 class="mb-4">
             All Notes

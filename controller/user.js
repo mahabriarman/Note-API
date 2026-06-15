@@ -127,10 +127,27 @@ async function handleHomePage(req, res) {
     try {
         const notes = await Note.find({
              createdBy: req.user._id
-        });
+        }).sort({
+            createdAt :-1
+        })
 
+        const totalNotes = notes.length;
+
+        const totalTags = notes.reduce(
+        (count,note) => count + note.tag.length,0)
+        
+        const latestNote = notes.length > 0
+        ?notes[0].title
+        : "No Notes"
+        const success = req.session.success;
+        delete req.session.success
         return res.render("home", {
             notes,
+            user : req.user,
+            totalNotes,
+            totalTags,
+            latestNote,
+            success
         });
     } catch (error) {
         return res.status(500).json({
@@ -159,7 +176,7 @@ async function handleAddNoteFromView(req, res) {
     : [],
     createdBy : req.user._id
 })
-
+        req.session.success="Note Created Successfully"
         return res.redirect("/user/home");
     } catch (error) {
         return res.status(500).json({

@@ -23,11 +23,10 @@ try {
     });
 
     if(existingUser){
-        return res.send(
-            "User Already Exists"
-        );
+        req.session.error= "User Already Exists"
+        return res.redirect("/signup")
     }
-
+    
     const hashedPassword =
         await bcrypt.hash(password,10);
 

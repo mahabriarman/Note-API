@@ -51,4 +51,15 @@ routes.patch("/", handleUpdateById);
 
 routes.delete("/", handleDeleteById);
 
+//test
+
+routes.get("/set",(req,res)=>{
+    req.session.name = "Arman";
+    res.send("session saved")
+})
+
+routes.get("/get",(req,res)=>{
+    res.send(req.session.name)
+})
+
 module.exports = routes;
