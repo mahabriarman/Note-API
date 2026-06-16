@@ -131,11 +131,51 @@ async function handleProfilePage(req,res){
     }
 }
 
+async function handleChangePasswordPage(req,res){
+    return res.render("changePassword")
+}
+
+async function handlechangePassword(req,res){
+   try {
+     const {currentPassword,newPassword} = req.body
+    const user = req.user
+
+    const isMatch = await bcrypt.compare(
+        currentPassword,user.password
+    )
+    if(!isMatch){
+        req.session.error = 
+        "Current Password is Incorrect"
+
+        return res.redirect("/profile/change-password")
+
+    }
+    const hashedPassword = 
+    await bcrypt.hash(newPassword,10)
+
+    user.password = hashedPassword
+    await user.save()
+
+    req.session.success=
+    "Password Changed Successfully"
+
+    return res.redirect("/user/home")
+
+
+    
+   } catch (error) {
+      return res.status(500).json({
+      error:error.message
+      })
+   }
+}
 module.exports = {
 handleSignupPage,
 handleLoginPage,
 handleSignup,
 handleLogin,
 handleLogout,
-handleProfilePage
+handleProfilePage,
+handleChangePasswordPage,
+handlechangePassword
 };

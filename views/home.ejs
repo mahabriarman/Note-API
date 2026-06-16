@@ -129,10 +129,16 @@
 
 </div>
     <div class="container mt-4">
-        <% if(success){%>
-            <div class="alert alert-success"></div>
-            <%= success %>
-       <% } %>
+        <% if(success){ %>
+
+    <div
+        class="alert alert-success"
+        id="successAlert"
+    >
+        <%= success %>
+    </div>
+
+<% } %>
 
         <h1 class="mb-4">
             All Notes

@@ -1,4 +1,5 @@
 const express = require("express");
+require("dotenv").config()
 const { Mongoconnection } = require("./connection");
 
 const NoteRouter = require("./route/user");
@@ -8,17 +9,17 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session")
 
 const app = express();
-const Port = 8001;
+const Port = process.env.PORT;
 
 Mongoconnection(
-    "mongodb://127.0.0.1:27017/Notes-API"
+    process.env.MONGO_URL
 );
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(session({
-    secret : "notes-app-secret",
+    secret : process.env.SESSION_SECRET,
     resave:false,
     saveUninitialized : false
 }))

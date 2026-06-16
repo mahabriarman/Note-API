@@ -8,7 +8,9 @@ const {
     handleSignup,
     handleLogin,
     handleLogout,
-    handleProfilePage
+    handleProfilePage,
+    handleChangePasswordPage,
+    handlechangePassword
 } = require("../controller/auth");
 
 const {checkAuth}= require("../middleware/auth")
@@ -30,5 +32,10 @@ router.get("/profile",checkAuth,handleProfilePage);
 
 // Logout
 router.get("/logout", handleLogout);
+
+//change password
+router.get("/profile/change-password",checkAuth,handleChangePasswordPage)
+
+router.post("/profile/change-password",checkAuth,handlechangePassword)
 
 module.exports = router;
