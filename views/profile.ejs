@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
 
     <link
@@ -8,11 +11,12 @@
         rel="stylesheet"
     >
 </head>
+
 <body>
 
 <div class="container mt-5">
 
-    <div class="card">
+    <div class="card shadow">
 
         <div class="card-header">
             <h2>User Profile</h2>
@@ -40,12 +44,30 @@
                 <%= user.createdAt.toLocaleDateString() %>
             </h4>
 
-            <a
-                href="/user/home"
-                class="btn btn-primary mt-3"
-            >
-                Back To Home
-            </a>
+            <div class="mt-4">
+
+                <a
+                    href="/user/home"
+                    class="btn btn-primary"
+                >
+                    Back To Home
+                </a>
+
+                <a
+                    href="/profile/change-password"
+                    class="btn btn-warning"
+                >
+                    Change Password
+                </a>
+
+                <a
+                    href="/logout"
+                    class="btn btn-danger"
+                >
+                    Logout
+                </a>
+
+            </div>
 
         </div>
 
@@ -54,4 +76,5 @@
 </div>
 
 </body>
+
 </html>

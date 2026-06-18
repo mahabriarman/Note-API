@@ -13,7 +13,15 @@
 <h1 class="mb-4">
     Add New Note
 </h1>
+<br>
+<% if(error){ %>
 
+    <div class="alert alert-danger">
+        <%= error %>
+    </div>
+
+<% } %>
+<br>
 <form action="/user/add" method="POST">
 
     <div class="mb-3">   

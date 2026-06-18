@@ -159,33 +159,80 @@ async function handleHomePage(req, res) {
 
 // ADD PAGE
 async function handleAddPage(req, res) {
-    return res.render("addNote");
+
+    const error =
+    req.session.error;
+
+    delete req.session.error;
+
+    return res.render(
+        "addNote",
+        {
+            error
+        }
+    );
 }
 
 // CREATE NOTE FROM EJS FORM
 async function handleAddNoteFromView(req, res) {
     try {
-        console.log(req.body);
+
+        const { title, content, tag } = req.body;
+
+        if(!title.trim()){
+
+            req.session.error =
+            "Title is required";
+
+            return res.redirect(
+                "/user/add"
+            );
+
+        }
+
+        if(!content.trim()){
+
+            req.session.error =
+            "Content is required";
+
+            return res.redirect(
+                "/user/add"
+            );
+
+        }
+
         await Note.create({
-    title : req.body.title,
-    content: req.body.content,
-   tag : req.body.tag
-    ? req.body.tag
-        .split(",")
-        .map(tag => tag.trim())
-    : [],
-    createdBy : req.user._id
-})
-        req.session.success="Note Created Successfully"
-        return res.redirect("/user/home");
+
+            title,
+
+            content,
+
+            tag: tag
+                ? tag
+                    .split(",")
+                    .map(tag => tag.trim())
+                : [],
+
+            createdBy: req.user._id
+
+        });
+
+        req.session.success =
+        "Note Created Successfully";
+
+        return res.redirect(
+            "/user/home"
+        );
+
     } catch (error) {
+
         return res.status(500).json({
             message: "Error while adding note",
             error: error.message,
         });
+
     }
 }
-
 // VIEW SINGLE NOTE PAGE
 async function handleViewPage(req, res) {
     try {
