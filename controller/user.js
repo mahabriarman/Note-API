@@ -325,20 +325,41 @@ async function handleDeleteByHomePage(req, res) {
         });
     }
 }
-async function handleSearchNotes(req,res){
+async function handleSearchNotes(req, res) {
 
     const searchText = req.query.title;
 
     const notes = await Note.find({
-        title:{
+        title: {
             $regex: searchText,
-            $options:"i"
-        }
+            $options: "i"
+        },
+        createdBy: req.user._id
+    }).sort({
+        createdAt: -1
     });
 
-    return res.render("home",{
-        notes
+    const totalNotes = notes.length;
+
+    const totalTags = notes.reduce(
+        (count, note) => count + note.tag.length,
+        0
+    );
+
+    const latestNote =
+        notes.length > 0
+            ? notes[0].title
+            : "No Notes";
+
+    return res.render("home", {
+        notes,
+        user: req.user,
+        totalNotes,
+        totalTags,
+        latestNote,
+        success: null
     });
+
 }
 module.exports={
     handleCreateNote,

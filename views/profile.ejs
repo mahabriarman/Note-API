@@ -12,60 +12,124 @@
     >
 </head>
 
-<body>
+<body class="bg-light">
 
 <div class="container mt-5">
 
-    <div class="card shadow">
+    <div class="row justify-content-center">
 
-        <div class="card-header">
-            <h2>User Profile</h2>
-        </div>
+        <div class="col-md-8">
 
-        <div class="card-body">
+            <div class="card shadow border-0">
 
-            <h4>
-                Name:
-                <%= user.name %>
-            </h4>
+                <div class="card-header bg-dark text-white">
 
-            <h4>
-                Email:
-                <%= user.email %>
-            </h4>
+                    <h2 class="mb-0">
+                        👤 User Profile
+                    </h2>
 
-            <h4>
-                Total Notes:
-                <%= totalNote %>
-            </h4>
+                </div>
 
-            <h4>
-                Joined:
-                <%= user.createdAt.toLocaleDateString() %>
-            </h4>
+                <div class="card-body">
 
-            <div class="mt-4">
+                    <div class="mb-3">
 
-                <a
-                    href="/user/home"
-                    class="btn btn-primary"
-                >
-                    Back To Home
-                </a>
+                        <h5 class="text-muted">
+                            Name
+                        </h5>
 
-                <a
-                    href="/profile/change-password"
-                    class="btn btn-warning"
-                >
-                    Change Password
-                </a>
+                        <h4>
+                            <%= user.name %>
+                        </h4>
 
-                <a
-                    href="/logout"
-                    class="btn btn-danger"
-                >
-                    Logout
-                </a>
+                    </div>
+
+                    <hr>
+
+                    <div class="mb-3">
+
+                        <h5 class="text-muted">
+                            Email
+                        </h5>
+
+                        <h4>
+                            <%= user.email %>
+                        </h4>
+
+                    </div>
+
+                    <hr>
+
+                    <div class="row text-center">
+
+                        <div class="col-md-6 mb-3">
+
+                            <div class="card shadow-sm">
+
+                                <div class="card-body">
+
+                                    <h2 class="text-primary">
+                                        <%= totalNote %>
+                                    </h2>
+
+                                    <p class="mb-0">
+                                        Total Notes
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <div class="card shadow-sm">
+
+                                <div class="card-body">
+
+                                    <h5 class="text-success">
+                                        <%= user.createdAt.toLocaleDateString() %>
+                                    </h5>
+
+                                    <p class="mb-0">
+                                        Joined On
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex gap-2 flex-wrap mt-4">
+
+                        <a
+                            href="/user/home"
+                            class="btn btn-primary"
+                        >
+                            🏠 Home
+                        </a>
+
+                        <a
+                            href="/profile/change-password"
+                            class="btn btn-warning"
+                        >
+                            🔑 Change Password
+                        </a>
+
+                        <a
+                            href="/logout"
+                            class="btn btn-danger"
+                        >
+                            🚪 Logout
+                        </a>
+
+                    </div>
+
+                </div>
 
             </div>
 

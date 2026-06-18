@@ -1,19 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Note</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
 </head>
-<body>
 
-    <h1>View Note</h1>
+<body class="bg-light">
 
-    <h2><%= note.title %></h2>
+<div class="container mt-5">
 
-    <p><%= note.content %></p>
+    <div class="row justify-content-center">
 
-    <a href="/user/home">
-        Back
-    </a>
+        <div class="col-md-8">
+
+            <div class="card shadow">
+
+                <div class="card-header">
+
+                    <h2 class="mb-0">
+                        <%= note.title %>
+                    </h2>
+
+                </div>
+
+                <div class="card-body">
+
+                    <p class="fs-5">
+                        <%= note.content %>
+                    </p>
+
+                    <% if(note.tag && note.tag.length > 0){ %>
+
+                        <div class="mb-3">
+
+                            <% note.tag.forEach(tag => { %>
+
+                                <span class="badge bg-primary me-1">
+                                    <%= tag %>
+                                </span>
+
+                            <% }) %>
+
+                        </div>
+
+                    <% } %>
+
+                    <hr>
+
+                    <small class="text-muted">
+
+                        Created:
+                        <%= note.createdAt.toLocaleDateString() %>
+
+                    </small>
+
+                    <div class="mt-4">
+
+                        <a
+                            href="/user/edit/<%= note._id %>"
+                            class="btn btn-warning"
+                        >
+                            Edit
+                        </a>
+
+                        <a
+                            href="/user/home"
+                            class="btn btn-secondary"
+                        >
+                            Back
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 </body>
+
 </html>

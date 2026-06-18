@@ -11,59 +11,66 @@
 <body>
 
 <body>
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+
     <div class="container">
 
-        <a class="navbar-brand fs-3" href="/user/home">
-            Notes App
+        <a
+            class="navbar-brand fw-bold fs-3"
+            href="/user/home"
+        >
+            📝 Notes App
         </a>
 
-        <div class="d-flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2 flex-wrap">
 
             <form
                 action="/user/search"
                 method="GET"
-                class="d-flex me-3"
+                class="d-flex me-2"
             >
+
                 <input
                     class="form-control me-2"
                     type="text"
                     name="title"
-                    placeholder="Search Notes"
+                    placeholder="Search Notes..."
                 >
 
                 <button
-                    class="btn btn-primary"
+                    class="btn btn-outline-light"
                     type="submit"
                 >
                     Search
                 </button>
+
             </form>
 
             <a
                 href="/user/add"
                 class="btn btn-success"
             >
-                Add Note
+                ➕ Add Note
             </a>
 
             <a
                 href="/profile"
-                class="btn btn-info"
+                class="btn btn-info text-white"
             >
-                Profile
+                👤 Profile
             </a>
 
             <a
                 href="/logout"
                 class="btn btn-danger"
             >
-                Logout
+                🚪 Logout
             </a>
 
         </div>
 
     </div>
+
 </nav>
 <div class="row mb-4">
 
