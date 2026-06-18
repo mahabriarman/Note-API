@@ -3,7 +3,11 @@ const bcrypt = require("bcrypt");
 const Note = require("../models/user");
 // Signup Page
 async function handleSignupPage(req,res){
-return res.render("signup");
+    const error =
+req.session.error;
+
+delete req.session.error;
+return res.render("signup",{error});
 }
 
 // Login Page
@@ -17,7 +21,31 @@ try {
 
 
     const { name, email, password } = req.body;
+    if(password.length<5){
+        req.session.error = 
+        "Password must be at least of 6 characters"
+        return res.redirect("/signup")
+    }
+    if(!name.trim()){
 
+    req.session.error =
+    "Name is required";
+
+    return res.redirect(
+        "/signup"
+    );
+
+}
+if(!email.includes("@")){
+
+    req.session.error =
+    "Invalid Email";
+
+    return res.redirect(
+        "/signup"
+    );
+
+}
     const existingUser = await User.findOne({
         email
     });
@@ -132,7 +160,10 @@ async function handleProfilePage(req,res){
 }
 
 async function handleChangePasswordPage(req,res){
-    return res.render("changePassword")
+    const error = req.session.error
+    delete req.session.error
+    
+    return res.render("changePassword",{error})
 }
 
 async function handlechangePassword(req,res){
